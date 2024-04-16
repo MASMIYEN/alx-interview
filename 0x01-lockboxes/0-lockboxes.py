@@ -1,27 +1,30 @@
-#!/usr/bin/python3
-"""BOXES BOXES"""
-
-
 def canUnlockAll(boxes):
-    # Initialize a set to keep track of keys we have
-    keys = {0}  # Start with the key to the first box
+    """
+    take boxes
+        create set of keys
+            go to box0
+                get all keys and add them setofkeys
+            start opening boxes from setofkeys
+                go to each box of each key
+                    and take the keys from it and add them to set of keys
+                keep loping through all setof keys
+            ignore keys that dont have box
+            track opening of boxes by a counter, if at end it
+            equal to lentgh of boxes it mean all boxes unlock
+            OPTIMIZE IDEA :
+                if we add 0 to setofkeys at start, we dont need for in 23
+    """
+    total_boxes = len(boxes)
+    setofkeys = [0]
+    counter = 0
+    index = 0
 
-    # Initialize a set to keep track of visited boxes
-    visited = set()
+    while index < len(setofkeys):
+        setkey = setofkeys[index]
+        for key in boxes[setkey]:
+            if 0 < key < total_boxes and key not in setofkeys:
+                setofkeys.append(key)
+                counter += 1
+        index += 1
 
-    # Iterate over boxes until no new keys can be found
-    while keys:
-        # Pop a key from the set of keys
-        key = keys.pop()
-
-        # Add the current box to visited
-        visited.add(key)
-
-        # Add any new keys found in the current box to the set of keys
-        keys |= set(boxes[key])
-
-        # Remove any keys that open boxes we have already visited
-        keys -= visited
-
-    # If all boxes have been visited, return True
-    return len(visited) == len(boxes)
+    return counter == total_boxes - 1
