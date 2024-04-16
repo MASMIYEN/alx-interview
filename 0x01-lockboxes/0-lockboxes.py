@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""BOXES BOXES"""
+
+
 def canUnlockAll(boxes):
     # Initialize a set to keep track of keys we have
     keys = {0}  # Start with the key to the first box
