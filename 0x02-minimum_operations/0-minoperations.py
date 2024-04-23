@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""Minimum Operations function module."""
+
+
 def minOperations(n):
     # If n is 0 or negative, it's impossible to achieve
     if n <= 0:
